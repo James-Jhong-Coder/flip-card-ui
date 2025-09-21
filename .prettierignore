@@ -1,0 +1,23 @@
+# 產出物
+dist
+build
+coverage
+*.log
+
+# 套件/暫存
+node_modules
+.temp
+.tmp
+.vite
+.cache
+.next
+.output
+
+# 构建相關
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# 雜項
+*.min.*
+public/**/*.min.*
