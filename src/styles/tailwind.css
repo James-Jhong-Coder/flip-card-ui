@@ -1,1 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  --color-gray-200: #e5e5e5;
+  --color-gray-260: #717182;
+  --color-gray-300: #ececf0;
+}
