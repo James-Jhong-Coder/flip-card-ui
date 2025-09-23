@@ -34,7 +34,7 @@ const computedTabForm = computed<Record<string, Component>>(() => {
 <style scoped>
 @reference "@/styles/global.css";
 .page {
-  @apply max-w-screen-md px-4 pb-6 mx-auto h-full;
+  @apply max-w-screen-sm px-4 pb-6 mx-auto h-full;
   @apply flex justify-center items-center;
 }
 

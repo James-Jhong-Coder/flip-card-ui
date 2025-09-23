@@ -27,7 +27,11 @@ const onClickHandler = () => {
 </script>
 
 <template>
-  <div class="btn" :class="[variant, shape, { disabled, active: isActive }]" @click="onClickHandler">
+  <div
+    class="btn"
+    :class="[variant, shape, { disabled, active: isActive }]"
+    @click="onClickHandler"
+  >
     <slot></slot>
   </div>
 </template>
@@ -36,7 +40,7 @@ const onClickHandler = () => {
 @reference "@/styles/global.css";
 
 .btn {
-  @apply flex items-center;
+  @apply flex items-center justify-center;
   @apply leading-none;
   @apply h-[2rem] px-3;
   @apply cursor-pointer select-none;
@@ -56,12 +60,12 @@ const onClickHandler = () => {
 }
 
 .btn.solid {
-  /* @apply bg-gray-650; */
+  @apply bg-gray-650;
   @apply text-white;
 }
 
 .btn.solid:hover {
-  /* @apply bg-gray-630; */
+  @apply bg-gray-630;
 }
 
 .btn.outline {
