@@ -8,6 +8,13 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AuthTabs: typeof import('./components/auth/AuthTabs.vue')['default']
+    CustomButton: typeof import('./components/common/CustomButton.vue')['default']
+    GeneralInput: typeof import('./components/common/GeneralInput.vue')['default']
+    LoginForm: typeof import('./components/auth/LoginForm.vue')['default']
+    RegisterForm: typeof import('./components/auth/RegisterForm.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./components/common/SvgIcon.vue')['default']
   }
 }
