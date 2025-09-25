@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AppHeader: typeof import('./components/Dashboard/AppHeader.vue')['default']
     AuthTabs: typeof import('./components/auth/AuthTabs.vue')['default']
     CustomButton: typeof import('./components/common/CustomButton.vue')['default']
     GeneralInput: typeof import('./components/common/GeneralInput.vue')['default']
