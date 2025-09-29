@@ -24,8 +24,9 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/app/quiz',
+    name: 'quiz',
     component: () => import('@/views/Quiz.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, transition: 'quiz-fade' },
   },
 ];
 
