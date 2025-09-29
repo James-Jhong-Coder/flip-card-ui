@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import DialogCreateCard from '@/components/dialog/DialogCreateCard.vue';
+import { ref } from 'vue';
+
+const showCreateCardDialog = ref(false);
+const onOpenCreateCardDialogHandler = () => {
+  showCreateCardDialog.value = true;
+};
+</script>
+
 <template>
   <section class="dashboard">
     <div class="content mt-5">
@@ -7,7 +17,7 @@
         <StatCard title="日文字卡" english-title="jp" />
       </div>
       <div class="flex items-center mt-6">
-        <CustomButton variant="solid" shape="square">
+        <CustomButton variant="solid" shape="square" @click="onOpenCreateCardDialogHandler">
           <SvgIcon name="icon_plus" class="w-4 h-4" />
           <span class="ml-1">新增字卡</span>
         </CustomButton>
@@ -18,6 +28,7 @@
       </div>
       <FlipCardListSection class="mt-5" />
     </div>
+    <DialogCreateCard v-model:visible="showCreateCardDialog" />
   </section>
 </template>
 
