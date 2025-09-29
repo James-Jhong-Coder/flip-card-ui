@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AuthTabs from '@/components/auth/AuthTabs.vue';
 import LoginForm from '@/components/auth/LoginForm.vue';
 import RegisterForm from '@/components/auth/RegisterForm.vue';
 import { computed, ref } from 'vue';
