@@ -18,7 +18,8 @@
 .app-header {
   @apply w-full mx-auto;
   @apply bg-white;
-  @apply shadow-sm px-3;
+  @apply px-3 shadow-sm;
+  /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08); */
 }
 .app-header .content {
   @apply max-w-screen-lg mx-auto leading-none;
