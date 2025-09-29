@@ -27,11 +27,7 @@ const onClickHandler = () => {
 </script>
 
 <template>
-  <div
-    class="btn"
-    :class="[variant, shape, { disabled, active: isActive }]"
-    @click="onClickHandler"
-  >
+  <div class="btn" :class="[variant, shape, { disabled, active: isActive }]" @click="onClickHandler">
     <slot></slot>
   </div>
 </template>
@@ -43,7 +39,11 @@ const onClickHandler = () => {
   @apply flex items-center justify-center;
   @apply leading-none;
   @apply h-[2rem] px-3;
-  @apply cursor-pointer select-none;
+  @apply cursor-pointer select-none outline-none text-sm;
+}
+
+.btn:focus {
+  @apply outline-none;
 }
 
 .btn.pill {
@@ -69,11 +69,11 @@ const onClickHandler = () => {
 }
 
 .btn.outline {
-  /* @apply border border-gray-430; */
+  @apply border border-gray-390 text-gray-750;
 }
 
 .btn.outline:hover {
-  /* @apply bg-gray-560; */
+  @apply border-gray-390 bg-gray-470;
 }
 
 .btn.outline.disabled:hover {
@@ -91,6 +91,7 @@ const onClickHandler = () => {
 .btn.ghost.disabled:hover {
   @apply bg-none;
 }
+
 .btn.ghost.active {
   @apply bg-white;
 }

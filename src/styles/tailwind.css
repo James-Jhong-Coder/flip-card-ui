@@ -5,8 +5,20 @@
   --color-gray-260: #717182;
   --color-gray-300: #ececf0;
   --color-gray-350: #a1a1a1;
+  --color-gray-360: #32364a;
   --color-gray-380: #717182;
+  --color-gray-390: #e5e5e5;
+  --color-gray-390: #d0d1d5;
+  --color-gray-470: #e6e7ed;
+  --color-gray-480: #eceef2;
+  --color-gray-510: #f8f9fa;
   --color-gray-630: #1c1b29;
   --color-gray-650: #030213;
   --color-gray-700: #0a0a0a;
+  --color-gray-750: #0d0d0d;
+}
+
+.card {
+  @apply border border-gray-390 p-6 rounded-2xl bg-white text-sm;
+  @apply flex flex-col;
 }

@@ -6,7 +6,7 @@ body {
 }
 
 body {
-  @apply bg-white;
+  @apply bg-gray-510;
 }
 
 #app {

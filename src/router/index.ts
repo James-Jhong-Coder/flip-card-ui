@@ -7,7 +7,7 @@ const routes: RouteRecordRaw[] = [
     path: '/login',
     name: 'login',
     component: () => import('@/views/Login.vue'),
-    meta: { guestOnly: true },
+    meta: { guestOnly: true, title: '登入' },
   },
   {
     path: '/',
@@ -17,7 +17,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '',
         name: 'dashboard',
-        component: () => import('@/views/Dashboard.vue'), // ✅ 這裡改成 Dashboard
+        component: () => import('@/views/Dashboard.vue'),
         meta: { title: '儀表板' },
       },
     ],
@@ -32,9 +32,10 @@ const router = createRouter({
 
 // 一律導去 login，但避免無限 loop
 router.beforeEach((to) => {
-  if (to.name !== 'login') {
-    return { name: 'login' };
-  }
+  // if (to.name !== 'login') {
+  //   return { name: 'login' };
+  // }
+  return true;
 });
 
 export default router;

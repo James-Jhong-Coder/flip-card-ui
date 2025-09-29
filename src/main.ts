@@ -1,11 +1,13 @@
-import { createApp } from "vue";
-import { createPinia } from "pinia";
-import "@/styles/global.css";
-import "@/plugin/registerSvgIcon.ts";
-import router from "@/router/index.ts";
-import App from "./App.vue";
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+import '@/styles/global.css';
+import '@/plugin/registerSvgIcon.ts';
+import { registerPrimeVue } from '@/plugin/registerPrimeVue';
+import router from '@/router/index.ts';
+import App from './App.vue';
 
 const app = createApp(App);
+registerPrimeVue(app);
 app.use(createPinia());
 app.use(router);
-app.mount("#app");
+app.mount('#app');

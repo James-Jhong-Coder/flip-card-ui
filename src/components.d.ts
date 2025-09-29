@@ -8,13 +8,20 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AppHeader: typeof import('./components/Dashboard/AppHeader.vue')['default']
     AuthTabs: typeof import('./components/auth/AuthTabs.vue')['default']
     CustomButton: typeof import('./components/common/CustomButton.vue')['default']
+    FlipCardCategory: typeof import('./components/FlipCardCategory.vue')['default']
+    FlipCardListItem: typeof import('./components/FlipCardListItem.vue')['default']
+    FlipCardListSection: typeof import('./components/FlipCardListSection.vue')['default']
+    FlipCardTable: typeof import('./components/FlipCardTable.vue')['default']
     GeneralInput: typeof import('./components/common/GeneralInput.vue')['default']
     LoginForm: typeof import('./components/auth/LoginForm.vue')['default']
     RegisterForm: typeof import('./components/auth/RegisterForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    StatCard: typeof import('./components/StatCard.vue')['default']
     SvgIcon: typeof import('./components/common/SvgIcon.vue')['default']
+    Tabs: typeof import('./components/common/Tabs.vue')['default']
   }
 }
