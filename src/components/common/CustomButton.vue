@@ -39,7 +39,7 @@ const onClickHandler = () => {
   @apply flex items-center justify-center;
   @apply leading-none;
   @apply h-[2rem] px-3;
-  @apply cursor-pointer select-none outline-none;
+  @apply cursor-pointer select-none outline-none text-sm;
 }
 
 .btn:focus {
