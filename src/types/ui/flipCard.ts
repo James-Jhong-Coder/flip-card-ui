@@ -1,5 +1,6 @@
 export interface FlipCard {
-  id: string | number;
+  id?: string | number;
+  rowNo?: number;
   lang: string; // 語言 (ex: 'EN', 'JP')
   createdAt: string; // 建立日期
   updateAt: string; // 修改日期
