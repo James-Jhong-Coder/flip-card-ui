@@ -1,10 +1,17 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 import DialogCreateCard from '@/components/dialog/DialogCreateCard.vue';
 import { ref } from 'vue';
 
 const showCreateCardDialog = ref(false);
 const onOpenCreateCardDialogHandler = () => {
   showCreateCardDialog.value = true;
+};
+const router = useRouter();
+const onGotoQuiz = () => {
+  router.push({
+    name: 'quiz',
+  });
 };
 </script>
 
@@ -21,7 +28,7 @@ const onOpenCreateCardDialogHandler = () => {
           <SvgIcon name="icon_plus" class="w-4 h-4" />
           <span class="ml-1">新增字卡</span>
         </CustomButton>
-        <CustomButton variant="outline" shape="square" class="ml-3 text-white">
+        <CustomButton variant="outline" shape="square" class="ml-3 text-white" @click="onGotoQuiz">
           <SvgIcon name="icon_play" class="w-4 h-4" />
           <span class="ml-1">開始學習</span>
         </CustomButton>

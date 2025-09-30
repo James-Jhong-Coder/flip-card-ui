@@ -10,17 +10,23 @@ const routes: RouteRecordRaw[] = [
     meta: { guestOnly: true, title: '登入' },
   },
   {
-    path: '/',
+    path: '/app',
     component: () => import('@/layouts/AppLayout.vue'),
     meta: { requiresAuth: true },
     children: [
       {
-        path: '',
+        path: 'dashboard',
         name: 'dashboard',
         component: () => import('@/views/Dashboard.vue'),
-        meta: { title: '儀表板' },
+        meta: { requiresAuth: true },
       },
     ],
+  },
+  {
+    path: '/app/quiz',
+    name: 'quiz',
+    component: () => import('@/views/Quiz.vue'),
+    meta: { requiresAuth: true, transition: 'quiz-fade' },
   },
 ];
 
