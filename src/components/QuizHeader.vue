@@ -1,15 +1,17 @@
 <template>
   <div class="quiz-header">
     <div class="content">
-      <div class="flex items-center">
-        <CustomButton variant="outline" shape="square">
-          <SvgIcon name="icon_home" class="w-3 h-3" />
-        </CustomButton>
-        <QuizProgress class="ml-3" />
-        <LanguageTag tag="EN" class="ml-3" />
-        <FullScreenButton class="ml-auto" />
+      <div class="flex flex-col w-full">
+        <div class="flex items-center">
+          <CustomButton variant="outline" shape="square">
+            <SvgIcon name="icon_home" class="w-3 h-3" />
+          </CustomButton>
+          <QuizProgress class="ml-3" />
+          <LanguageTag tag="EN" class="ml-3" />
+          <FullScreenButton class="ml-auto" />
+        </div>
+        <QuizProgressBar class="mt-3" />
       </div>
-      <QuizProgressBar />
     </div>
   </div>
 </template>
