@@ -9,6 +9,7 @@ const route = useRoute();
       <component :is="Component" />
     </Transition>
   </RouterView>
+  <GlobalDialogGroup />
 </template>
 
 <style scoped>

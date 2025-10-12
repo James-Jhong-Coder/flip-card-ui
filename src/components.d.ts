@@ -21,6 +21,8 @@ declare module 'vue' {
     FlipCardTable: typeof import('./components/FlipCardTable.vue')['default']
     FullScreenButton: typeof import('./components/FullScreenButton.vue')['default']
     GeneralInput: typeof import('./components/common/GeneralInput.vue')['default']
+    GlobalDialogGroup: typeof import('./components/dialog/GlobalDialogGroup.vue')['default']
+    GlobalDialogLoading: typeof import('./components/dialog/global/GlobalDialogLoading.vue')['default']
     LanguageTag: typeof import('./components/LanguageTag.vue')['default']
     LoginForm: typeof import('./components/auth/LoginForm.vue')['default']
     QuizFooter: typeof import('./components/QuizFooter.vue')['default']
