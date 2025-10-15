@@ -1,20 +1,29 @@
-import { defineStore } from 'pinia';
+import { defineStore, getActivePinia } from 'pinia';
 
-interface ProfileState {
-  token?: string;
-  email?: string;
-  name?: string;
+interface Profile {
+  token: string;
+  email: string;
+  name: string;
+}
+interface AccountState {
+  profile: Profile;
 }
 
-export const useProfileStore = defineStore('api', {
-  state: (): ProfileState => ({
-    token: '',
-    email: '',
-    name: '',
+export const useProfileStore = defineStore('profile', {
+  state: (): AccountState => ({
+    profile: {
+      token: '',
+      email: '',
+      name: '',
+    },
   }),
   actions: {
-    updateState(payload: ProfileState) {
+    updateState(payload: Partial<AccountState>) {
       this.$patch(payload);
+    },
+    logout() {
+      const pinia = getActivePinia();
+      console.log('pinia = ', pinia);
     },
   },
 });

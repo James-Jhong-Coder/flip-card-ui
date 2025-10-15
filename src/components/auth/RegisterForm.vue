@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate';
+import { useDialogStore } from '@/stores/dialog';
 import { object, string, ref as yupRef } from 'yup';
 import { POST_AUTH_REGISTER } from '@/apis/api';
+const dialogStore = useDialogStore();
 const schema = object({
   name: string().required('請輸入姓名'),
   email: string().required('請輸入電子郵件').email('請輸入正確的電子郵件格式'),
@@ -11,7 +13,7 @@ const schema = object({
     .oneOf([yupRef('password')], '兩次輸入的密碼不一致'),
 });
 
-const { defineField, handleSubmit, errors } = useForm({
+const { defineField, handleSubmit, errors, resetForm } = useForm({
   validationSchema: schema,
 });
 
@@ -26,7 +28,10 @@ const authRegister = () => {
     password: password.value,
     name: name.value,
   }).then(() => {
-    console.log('success');
+    dialogStore.show('alert', {
+      message: '註冊成功 !',
+    });
+    resetForm();
   });
 };
 

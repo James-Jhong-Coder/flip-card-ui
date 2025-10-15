@@ -62,7 +62,6 @@ const router = createRouter({
 
 // 一律導去 login，但避免無限 loop
 router.beforeEach((to) => {
-  console.log('enter', to);
   const token = localStorage.getItem('token');
   // 在沒有 token 的情況下，要去有 token 才能進入的頁面都導去 login
   if (to.meta.requiresAuth && !token) {
