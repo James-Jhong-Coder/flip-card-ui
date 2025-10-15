@@ -8,7 +8,7 @@ type VeeValidateAttrs =
 interface InputProps {
   modelValue?: string | number;
   name?: string;
-  type?: 'text';
+  type?: string;
   title?: string;
   placeholder?: string;
   disabled?: boolean;
