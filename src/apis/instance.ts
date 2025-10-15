@@ -5,7 +5,7 @@ import { useApiStore } from '@/stores/api';
 import { useProfileStore } from '@/stores/profile';
 
 const instance = axios.create({
-  baseURL: import.meta.env.API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 60000,
   headers: {
     'Content-Type': 'application/json',
