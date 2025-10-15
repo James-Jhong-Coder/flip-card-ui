@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia';
 
+type DialogNameType = 'loading';
+type DialogData = Record<string, unknown>;
+
 interface DialogState {
   [key: string]: {
     visible: boolean;
@@ -14,15 +17,16 @@ export const useDialogStore = defineStore('dialog', {
     },
   }),
   actions: {
-    show(name: keyof DialogState, data?: any) {
+    show(name: DialogNameType, data?: DialogData) {
       if (this[name]) {
         this[name].visible = true;
         this[name].data = data;
       }
     },
-    hide(name: keyof DialogState) {
+    hide(name: DialogNameType) {
       if (this[name]) {
         this[name].visible = false;
+        this[name].data = {};
       }
     },
   },
