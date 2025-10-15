@@ -1,4 +1,6 @@
-import { defineStore, getActivePinia } from 'pinia';
+import { defineStore } from 'pinia';
+import { useApiStore } from '@/stores/api';
+import { useDialogStore } from '@/stores/dialog';
 
 interface Profile {
   token: string;
@@ -21,9 +23,16 @@ export const useProfileStore = defineStore('profile', {
     updateState(payload: Partial<AccountState>) {
       this.$patch(payload);
     },
+    resetAllStore() {
+      this.$reset();
+      const apiStore = useApiStore();
+      const dialogStore = useDialogStore();
+      apiStore.$reset();
+      dialogStore.$reset();
+      localStorage.clear();
+    },
     logout() {
-      const pinia = getActivePinia();
-      console.log('pinia = ', pinia);
+      this.resetAllStore();
     },
   },
 });

@@ -15,6 +15,7 @@ const onConfirm = () => {
   if (typeof dialogStore?.confirm?.data.action === 'function') {
     dialogStore?.confirm?.data.action();
   }
+  visible.value = false;
 };
 </script>
 
