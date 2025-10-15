@@ -2,7 +2,10 @@
 import { useForm } from 'vee-validate';
 import { object, string } from 'yup';
 import { useRouter } from 'vue-router';
+import { useProfileStore } from '@/stores/profile';
+import { POST_AUTH_LOGIN } from '@/apis/api';
 const router = useRouter();
+const profileStore = useProfileStore();
 const schema = object({
   email: string().required('請輸入電子郵件').email('請輸入正確的電子郵件格式'),
   password: string().required('請輸入密碼').min(6, '密碼長度至少需要 6 碼'),
@@ -14,15 +17,23 @@ const { defineField, handleSubmit, errors } = useForm({
 
 const [email, emailAttrs] = defineField('email');
 const [password, passwordAttrs] = defineField('password');
-const onSubmit = handleSubmit((values) => {
-  console.log('送出成功', values);
-});
-const test = () => {
-  console.log('tset!!!')
-  router.push({
-    name: 'dashboard',
+const onLoginHandler = () => {
+  POST_AUTH_LOGIN({
+    email: email.value,
+    password: password.value,
+  }).then((res) => {
+    const data = res.data;
+    profileStore.updateState({ profile: data });
+    localStorage.setItem('token', data.token);
+    router.push({
+      name: 'dashboard',
+    });
   });
 };
+
+const onSubmit = handleSubmit(() => {
+  onLoginHandler();
+});
 </script>
 
 <template>
@@ -36,11 +47,12 @@ const test = () => {
     <general-input
       v-model="password"
       title="密碼"
+      type="password"
       :vee-validate-attrs="passwordAttrs"
       :error-message="errors['password']"
       class="mt-4"
     />
-    <custom-button variant="solid" shape="square" class="mt-5" @click="test"
+    <custom-button variant="solid" shape="square" class="mt-5" @click="onSubmit"
       >登入</custom-button
     >
   </div>
