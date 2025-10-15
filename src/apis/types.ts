@@ -15,3 +15,9 @@ export interface RegisterPayload {
   password: string;
   confirmPassword?: string;
 }
+
+export interface GET_FLASH_CARD_STATS_RESPONSE {
+  total: number;
+  en: number;
+  jp: number;
+}

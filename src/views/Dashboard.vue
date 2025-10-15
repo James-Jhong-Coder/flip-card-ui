@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import DialogCreateCard from '@/components/dialog/DialogCreateCard.vue';
 import { ref } from 'vue';
+import { useDashboardStore } from '@/stores/dashboard';
+import DialogCreateCard from '@/components/dialog/DialogCreateCard.vue';
 
+const dashboardStore = useDashboardStore();
 const showCreateCardDialog = ref(false);
 const onOpenCreateCardDialogHandler = () => {
   showCreateCardDialog.value = true;
@@ -13,16 +15,16 @@ const onGotoQuiz = () => {
     name: 'quiz',
   });
 };
+const onGetFlashCardStats = () => {
+  dashboardStore.getFlashCardStats();
+};
+onGetFlashCardStats();
 </script>
 
 <template>
   <section class="dashboard">
     <div class="content mt-5">
-      <div class="summary">
-        <StatCard title="總字卡數" />
-        <StatCard title="英文字卡" english-title="en" />
-        <StatCard title="日文字卡" english-title="jp" />
-      </div>
+      <StatsPanel :stats="dashboardStore.stats" />
       <div class="flex items-center mt-6">
         <CustomButton variant="solid" shape="square" @click="onOpenCreateCardDialogHandler">
           <SvgIcon name="icon_plus" class="w-4 h-4" />

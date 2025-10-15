@@ -5,7 +5,7 @@ interface Props {
   total?: number;
 }
 
-const props = defineProps<Props>();
+defineProps<Props>();
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const props = defineProps<Props>();
       <div v-if="englishTitle" class="tag ml-auto">{{ englishTitle }}</div>
     </div>
     <div class="flex mt-6">
-      <span class="text-2xl">0</span>
+      <span class="text-2xl">{{ total }}</span>
     </div>
   </div>
 </template>
