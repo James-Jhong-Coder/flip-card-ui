@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia';
 import { GET_FLASH_CARD_STATS } from '@/apis/api';
+import type { CreateFlashCardPayload } from '@/apis/types';
+import { POST_FLASH_CARD } from '@/apis/api';
 
 interface Stats {
   total?: number;
@@ -25,6 +27,11 @@ export const useDashboardStore = defineStore('dashboard', {
         this.updateState({
           stats: res.data,
         });
+      });
+    },
+    createFlashCard(payload: CreateFlashCardPayload) {
+      return POST_FLASH_CARD(payload).then(() => {
+        this.getFlashCardStats();
       });
     },
   },

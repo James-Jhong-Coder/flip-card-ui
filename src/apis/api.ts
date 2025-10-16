@@ -1,6 +1,7 @@
 import instance from '@/apis/instance';
 import endPoints from '@/apis/endPoints';
 import type {
+  CreateFlashCardPayload,
   GET_FLASH_CARD_STATS_RESPONSE,
   LoginPayload,
   LoginResponse,
@@ -24,8 +25,8 @@ export const GET_FLASH_CARD_STATS = (): Promise<AxiosResponse<GET_FLASH_CARD_STA
   return instance.get(endPoints.FLASH_CARD_STATS);
 };
 
-export const POST_FLASH_CARD = () => {
-  return instance.post(endPoints.FLASH_CARD);
+export const POST_FLASH_CARD = (payload: CreateFlashCardPayload) => {
+  return instance.post(endPoints.FLASH_CARD, payload);
 };
 
 export const PATCH_FLASH_CARD = () => {

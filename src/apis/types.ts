@@ -21,3 +21,9 @@ export interface GET_FLASH_CARD_STATS_RESPONSE {
   en: number;
   jp: number;
 }
+
+export interface CreateFlashCardPayload {
+  language: string;
+  front: string;
+  back: string;
+}

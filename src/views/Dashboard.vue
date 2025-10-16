@@ -37,7 +37,7 @@ onGetFlashCardStats();
       </div>
       <FlipCardListSection class="mt-5" />
     </div>
-    <DialogCreateCard v-model:visible="showCreateCardDialog" />
+    <DialogCreateCard v-if="showCreateCardDialog" v-model:visible="showCreateCardDialog" />
   </section>
 </template>
 
