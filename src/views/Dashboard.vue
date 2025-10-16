@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useDashboardStore } from '@/stores/dashboard';
 import DialogCreateCard from '@/components/dialog/DialogCreateCard.vue';
 
@@ -10,15 +10,16 @@ const onOpenCreateCardDialogHandler = () => {
   showCreateCardDialog.value = true;
 };
 const router = useRouter();
+const computedTotalFlashCards = computed(() => {
+  return Number(dashboardStore.stats.total || 0);
+});
 const onGotoQuiz = () => {
-  router.push({
-    name: 'quiz',
-  });
+  if (computedTotalFlashCards.value > 0) {
+    router.push({
+      name: 'quiz',
+    });
+  }
 };
-const onGetFlashCardStats = () => {
-  dashboardStore.getFlashCardStats();
-};
-onGetFlashCardStats();
 </script>
 
 <template>
@@ -30,7 +31,13 @@ onGetFlashCardStats();
           <SvgIcon name="icon_plus" class="w-4 h-4" />
           <span class="ml-1">新增字卡</span>
         </CustomButton>
-        <CustomButton variant="outline" shape="square" class="ml-3 text-white" @click="onGotoQuiz">
+        <CustomButton
+          variant="outline"
+          shape="square"
+          class="ml-3 text-white"
+          :disabled="computedTotalFlashCards === 0"
+          @click="onGotoQuiz"
+        >
           <SvgIcon name="icon_play" class="w-4 h-4" />
           <span class="ml-1">開始學習</span>
         </CustomButton>

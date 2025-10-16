@@ -1,5 +1,4 @@
 export interface TabItem {
-  value: number | null;
+  value: string | null;
   text: string;
-  count: number;
 }

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { GET_FLASH_CARD_STATS } from '@/apis/api';
-import type { CreateFlashCardPayload } from '@/apis/types';
-import { POST_FLASH_CARD } from '@/apis/api';
+import type { CreateFlashCardPayload, GetFlashCardListQuery } from '@/apis/types';
+import { POST_FLASH_CARD, GET_FLASH_CARD } from '@/apis/api';
 
 interface Stats {
   total?: number;
@@ -11,11 +11,13 @@ interface Stats {
 
 interface DashBoardState {
   stats: Stats;
+  selectedLanguage: string;
 }
 
 export const useDashboardStore = defineStore('dashboard', {
   state: (): DashBoardState => ({
     stats: {},
+    selectedLanguage: 'EN',
   }),
   getters: {},
   actions: {
@@ -32,6 +34,11 @@ export const useDashboardStore = defineStore('dashboard', {
     createFlashCard(payload: CreateFlashCardPayload) {
       return POST_FLASH_CARD(payload).then(() => {
         this.getFlashCardStats();
+      });
+    },
+    getFlashCardList(query: GetFlashCardListQuery) {
+      GET_FLASH_CARD().then((res) => {
+        this.updateState({});
       });
     },
   },
