@@ -25,6 +25,10 @@ export const GET_FLASH_CARD_STATS = (): Promise<AxiosResponse<GET_FLASH_CARD_STA
   return instance.get(endPoints.FLASH_CARD_STATS);
 };
 
+export const GET_FLASH_CARD = () => {
+  return instance.get(endPoints.FLASH_CARD);
+};
+
 export const POST_FLASH_CARD = (payload: CreateFlashCardPayload) => {
   return instance.post(endPoints.FLASH_CARD, payload);
 };
