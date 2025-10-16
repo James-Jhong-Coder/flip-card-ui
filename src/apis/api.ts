@@ -23,3 +23,15 @@ export const GET_USERS_PROFILE = (): Promise<AxiosResponse<LoginResponse>> => {
 export const GET_FLASH_CARD_STATS = (): Promise<AxiosResponse<GET_FLASH_CARD_STATS_RESPONSE>> => {
   return instance.get(endPoints.FLASH_CARD_STATS);
 };
+
+export const POST_FLASH_CARD = () => {
+  return instance.post(endPoints.FLASH_CARD);
+};
+
+export const PATCH_FLASH_CARD = () => {
+  return instance.patch(endPoints.FLASH_CARD);
+};
+
+export const DELETE_FLASH_CARD = () => {
+  return instance.delete(endPoints.FLASH_CARD);
+};
