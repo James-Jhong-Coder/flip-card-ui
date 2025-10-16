@@ -2,7 +2,7 @@
 interface Props {
   title?: string;
   englishTitle?: string;
-  total?: number;
+  total?: number | string;
 }
 
 defineProps<Props>();
