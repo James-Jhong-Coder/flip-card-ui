@@ -42,9 +42,15 @@ export const useDashboardStore = defineStore('dashboard', {
         this.getFlashCardStats();
       });
     },
-    getFlashCardList(query: GetFlashCardListQuery) {
-      GET_FLASH_CARD().then((res) => {
-        this.updateState({});
+    getFlashCardList() {
+      GET_FLASH_CARD({
+        language: this.searchParams.language === 'all' ? null : this.searchParams.language,
+        front: this.searchParams.front,
+        back: this.searchParams.back,
+      }).then((res) => {
+        this.updateState({
+          flashCardList: res.data,
+        });
       });
     },
   },
