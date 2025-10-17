@@ -20,6 +20,10 @@ const onGotoQuiz = () => {
     });
   }
 };
+const onGetFlashCardStats = () => {
+  dashboardStore.getFlashCardStats();
+};
+onGetFlashCardStats();
 </script>
 
 <template>
