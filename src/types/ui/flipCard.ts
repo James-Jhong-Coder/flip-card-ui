@@ -7,3 +7,8 @@ export interface FlipCard {
   front: string; // 正面文字
   back: string; // 背面文字
 }
+
+export interface LanguageOption {
+  text: string;
+  value: string | null;
+}

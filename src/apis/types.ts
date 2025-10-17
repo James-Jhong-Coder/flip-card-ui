@@ -16,7 +16,7 @@ export interface RegisterPayload {
   confirmPassword?: string;
 }
 
-export interface GET_FLASH_CARD_STATS_RESPONSE {
+export interface GetFlashCardStatsResponse {
   total: number;
   en: number;
   jp: number;
@@ -32,4 +32,21 @@ export interface GetFlashCardListQuery {
   language?: string | null;
   front?: string;
   back?: string;
+}
+
+export interface FlashCardItem {
+  id: number;
+  userId: number;
+  language: string | null;
+  front: string;
+  back: string;
+  createdAt: number;
+  updatedAt: number;
+}
+
+export interface FlashCardListResponse {
+  items: FlashCardItem[];
+  page: number;
+  limit: number;
+  count: number;
 }

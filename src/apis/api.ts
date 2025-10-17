@@ -2,6 +2,7 @@ import instance from '@/apis/instance';
 import endPoints from '@/apis/endPoints';
 import type {
   CreateFlashCardPayload,
+  FlashCardListResponse,
   GetFlashCardListQuery,
   GetFlashCardStatsResponse,
   LoginPayload,
@@ -26,7 +27,9 @@ export const GET_FLASH_CARD_STATS = (): Promise<AxiosResponse<GetFlashCardStatsR
   return instance.get(endPoints.FLASH_CARD_STATS);
 };
 
-export const GET_FLASH_CARD = (query: GetFlashCardListQuery) => {
+export const GET_FLASH_CARD = (
+  query: GetFlashCardListQuery,
+): Promise<AxiosResponse<FlashCardListResponse>> => {
   return instance.get(endPoints.FLASH_CARD, {
     params: query,
   });
