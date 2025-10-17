@@ -33,7 +33,7 @@ onGetFlashCardStats();
       <div class="flex items-center mt-6">
         <CustomButton variant="solid" shape="square" @click="onOpenCreateCardDialogHandler">
           <SvgIcon name="icon_plus" class="w-4 h-4" />
-          <span class="ml-1">新增字卡</span>
+          <span class="ml-1">{{ $t('addNewCard') }}</span>
         </CustomButton>
         <CustomButton
           variant="outline"
@@ -43,7 +43,7 @@ onGetFlashCardStats();
           @click="onGotoQuiz"
         >
           <SvgIcon name="icon_play" class="w-4 h-4" />
-          <span class="ml-1">開始學習</span>
+          <span class="ml-1">{{ $t('startLearning') }}</span>
         </CustomButton>
       </div>
       <FlipCardListSection class="mt-5" />

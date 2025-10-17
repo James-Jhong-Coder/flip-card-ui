@@ -64,7 +64,6 @@ defineEmits<{
           <SvgIcon name="icon_close_dialog" class="w-3 h-3 icon-close" @click="closeCallback" />
         </div>
         <div class="dialog-body mt-5">
-          {{ errors }}
           <CustomSelect
             v-model="language"
             title="語言"

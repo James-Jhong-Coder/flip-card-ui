@@ -10,5 +10,7 @@
     "JP": "日文"
   },
   "myCardsTitle": "我的字卡",
-  "searchFilter": "搜尋條件"
+  "searchFilter": "搜尋條件",
+  "addNewCard": "新增字卡",
+  "startLearning": "開始學習"
 }
