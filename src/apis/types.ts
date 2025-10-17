@@ -29,7 +29,7 @@ export interface CreateFlashCardPayload {
 }
 
 export interface GetFlashCardListQuery {
-  language?: string;
+  language?: string | null;
   front?: string;
   back?: string;
 }
