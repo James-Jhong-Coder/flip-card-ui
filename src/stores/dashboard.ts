@@ -9,15 +9,21 @@ interface Stats {
   jp?: number;
 }
 
+interface SearchParams {
+  language?: string;
+  front?: string;
+  back?: string;
+}
+
 interface DashBoardState {
   stats: Stats;
-  selectedLanguage: string;
+  searchParams: SearchParams;
 }
 
 export const useDashboardStore = defineStore('dashboard', {
   state: (): DashBoardState => ({
     stats: {},
-    selectedLanguage: 'EN',
+    searchParams: {}
   }),
   getters: {},
   actions: {

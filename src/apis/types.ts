@@ -27,3 +27,9 @@ export interface CreateFlashCardPayload {
   front: string;
   back: string;
 }
+
+export interface GetFlashCardListQuery {
+  language?: string;
+  front?: string;
+  back?: string;
+}

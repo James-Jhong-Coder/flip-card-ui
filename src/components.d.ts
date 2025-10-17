@@ -10,6 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppHeader: typeof import('./components/Dashboard/AppHeader.vue')['default']
     AuthTabs: typeof import('./components/auth/AuthTabs.vue')['default']
+    BaseCard: typeof import('./components/common/BaseCard.vue')['default']
     CustomButton: typeof import('./components/common/CustomButton.vue')['default']
     CustomSelect: typeof import('./components/common/CustomSelect.vue')['default']
     DialogCreateCard: typeof import('./components/dialog/DialogCreateCard.vue')['default']
@@ -19,6 +20,7 @@ declare module 'vue' {
     FlipCardListItem: typeof import('./components/FlipCardListItem.vue')['default']
     FlipCardListSection: typeof import('./components/FlipCardListSection.vue')['default']
     FlipCardTable: typeof import('./components/FlipCardTable.vue')['default']
+    FlipCardTableFilter: typeof import('./components/FlipCardTableFilter.vue')['default']
     FullScreenButton: typeof import('./components/FullScreenButton.vue')['default']
     GeneralInput: typeof import('./components/common/GeneralInput.vue')['default']
     GlobalDialogAlert: typeof import('./components/dialog/global/GlobalDialogAlert.vue')['default']
