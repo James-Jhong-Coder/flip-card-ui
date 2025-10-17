@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { GET_FLASH_CARD_STATS } from '@/apis/api';
 import type {
   CreateFlashCardPayload,
+  FlashCardListResponse,
   GetFlashCardListQuery,
   GetFlashCardStatsResponse,
 } from '@/apis/types';
@@ -10,6 +11,7 @@ import { POST_FLASH_CARD, GET_FLASH_CARD } from '@/apis/api';
 interface DashBoardState {
   stats: GetFlashCardStatsResponse;
   searchParams: GetFlashCardListQuery;
+  flashCardList?: FlashCardListResponse | {};
 }
 
 export const useDashboardStore = defineStore('dashboard', {
@@ -24,6 +26,7 @@ export const useDashboardStore = defineStore('dashboard', {
       front: '',
       back: '',
     },
+    flashCardList: {},
   }),
   getters: {},
   actions: {
