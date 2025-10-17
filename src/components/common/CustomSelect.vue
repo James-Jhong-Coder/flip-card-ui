@@ -4,7 +4,7 @@ import { computed } from 'vue';
 
 interface option {
   text: string;
-  value: number | string;
+  value: number | string | null;
 }
 
 interface Props {
