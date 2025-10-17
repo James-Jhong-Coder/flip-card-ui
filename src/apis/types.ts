@@ -35,6 +35,7 @@ export interface GetFlashCardListQuery {
 }
 
 export interface FlashCardItem {
+  rowNo: number;
   id: number;
   userId: number;
   language: string | null;

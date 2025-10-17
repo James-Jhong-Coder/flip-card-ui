@@ -32,15 +32,6 @@ const computedLanguageOption = computed<LanguageOption[]>(() => {
   return defaultOption.concat(options);
 });
 
-const onClear = () => {
-  resetForm();
-  dashboardStore.updateState({ searchParams: {} });
-};
-
-const [language, languageAttrs] = defineField('language');
-const [front, frontAttrs] = defineField('front');
-const [back, backAttrs] = defineField('back');
-
 const onSearch = () => {
   dashboardStore.getFlashCardList({
     language: language.value,
@@ -48,6 +39,16 @@ const onSearch = () => {
     back: back.value,
   });
 };
+const onClear = () => {
+  resetForm();
+  onSearch();
+};
+
+const [language, languageAttrs] = defineField('language');
+const [front, frontAttrs] = defineField('front');
+const [back, backAttrs] = defineField('back');
+
+onSearch();
 
 watch(
   values,
@@ -80,7 +81,6 @@ watch(
           >搜尋</CustomButton
         >
       </div>
-      {{ dashboardStore.flashCardList }}
     </BaseCard>
   </div>
 </template>

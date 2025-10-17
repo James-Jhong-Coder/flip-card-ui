@@ -11,7 +11,7 @@ import { POST_FLASH_CARD, GET_FLASH_CARD } from '@/apis/api';
 interface DashBoardState {
   stats: GetFlashCardStatsResponse;
   searchParams: GetFlashCardListQuery;
-  flashCardList?: FlashCardListResponse | {};
+  flashCardList?: FlashCardListResponse | null;
 }
 
 export const useDashboardStore = defineStore('dashboard', {
@@ -26,7 +26,12 @@ export const useDashboardStore = defineStore('dashboard', {
       front: '',
       back: '',
     },
-    flashCardList: {},
+    flashCardList: {
+      page: 1,
+      limit: 20,
+      count: 0,
+      items: [],
+    },
   }),
   getters: {},
   actions: {
@@ -45,11 +50,10 @@ export const useDashboardStore = defineStore('dashboard', {
         this.getFlashCardStats();
       });
     },
-    getFlashCardList() {
+    getFlashCardList(query: GetFlashCardListQuery) {
       GET_FLASH_CARD({
-        language: this.searchParams.language === 'all' ? null : this.searchParams.language,
-        front: this.searchParams.front,
-        back: this.searchParams.back,
+        ...query,
+        language: query.language === 'all' ? null : query.language,
       }).then((res) => {
         this.updateState({
           flashCardList: res.data,
