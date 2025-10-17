@@ -8,5 +8,7 @@
     "all": "全部",
     "EN": "英文",
     "JP": "日文"
-  }
+  },
+  "myCardsTitle": "我的字卡",
+  "searchFilter": "搜尋條件"
 }
