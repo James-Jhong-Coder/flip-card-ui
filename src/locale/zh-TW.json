@@ -13,5 +13,6 @@
   "myCardsTitle": "我的字卡",
   "searchFilter": "搜尋條件",
   "addNewCard": "新增字卡",
-  "startLearning": "開始學習"
+  "startLearning": "開始學習",
+  "flashCardEmptyHint": "還沒有新增任何字卡，快點來新增第一張字卡吧 !"
 }
