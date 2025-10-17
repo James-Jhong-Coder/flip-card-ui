@@ -9,7 +9,7 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="card">
+  <BaseCard class="card">
     <div class="flex items-center">
       <span>{{ title }}</span>
       <div v-if="englishTitle" class="tag ml-auto">{{ englishTitle }}</div>
@@ -17,7 +17,7 @@ defineProps<Props>();
     <div class="flex mt-6">
       <span class="text-2xl">{{ total }}</span>
     </div>
-  </div>
+  </BaseCard>
 </template>
 
 <style scoped>
