@@ -59,3 +59,11 @@ export interface FlashCardListResponse {
   limit: number;
   count: number;
 }
+
+export interface GetStudyFlashCardsQuery {
+  language: string;
+}
+
+export interface GetStudyFlashCardsResponse {
+  rows: FlashCardItem[];
+}

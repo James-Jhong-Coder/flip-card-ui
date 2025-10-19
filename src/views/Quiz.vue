@@ -1,9 +1,38 @@
+<script setup lang="ts">
+import { useStudyStore } from '@/stores/study';
+import { computed, onBeforeUnmount } from 'vue';
+import { useQuiz } from '@/hook/useQuiz';
+const { selectedLanguage } = useQuiz();
+const studyStore = useStudyStore();
+
+const onGetStudyFlashCards = () => {
+  studyStore.getStudyFlashCards({
+    language: selectedLanguage,
+  });
+};
+
+const computedFlashCards = computed(() => {
+  return studyStore.studyFlashCards.rows || [];
+});
+
+onGetStudyFlashCards();
+
+onBeforeUnmount(() => {
+  studyStore.$reset();
+});
+</script>
+
 <template>
   <div class="flex flex-col h-full bg-gradient-to-br from-blue-50 to-indigo-100">
     <QuizHeader />
     <div class="section">
       <div class="quiz-content">
-        <FlipCard back="哈囉" front="hi" class="w-full h-full" />
+        <FlipCard
+          v-if="computedFlashCards.length > 0"
+          :back="computedFlashCards[studyStore.currentCardIndex]?.back"
+          :front="computedFlashCards[studyStore.currentCardIndex]?.front"
+          class="w-full h-full"
+        />
       </div>
     </div>
     <QuizFooter />

@@ -3,9 +3,12 @@ import endPoints from '@/apis/endPoints';
 import type {
   CreateFlashCardPayload,
   DeleteFlashCardPayload,
+  FlashCardItem,
   FlashCardListResponse,
   GetFlashCardListQuery,
   GetFlashCardStatsResponse,
+  GetStudyFlashCardsQuery,
+  GetStudyFlashCardsResponse,
   LoginPayload,
   LoginResponse,
   RegisterPayload,
@@ -49,4 +52,10 @@ export const DELETE_FLASH_CARD = (payload: DeleteFlashCardPayload) => {
   return instance.delete(endPoints.FLASH_CARD, {
     data: payload,
   });
+};
+
+export const GET_FLASH_CARD_STUDY = (
+  query: GetStudyFlashCardsQuery,
+): Promise<AxiosResponse<GetStudyFlashCardsResponse>> => {
+  return instance.get(endPoints.FLASH_CARD_STUDY, { params: query });
 };

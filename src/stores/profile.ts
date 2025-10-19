@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { useApiStore } from '@/stores/api';
 import { useDialogStore } from '@/stores/dialog';
+import { useStudyStore } from '@/stores/study';
 
 interface Profile {
   token: string;
@@ -27,8 +28,10 @@ export const useProfileStore = defineStore('profile', {
       this.$reset();
       const apiStore = useApiStore();
       const dialogStore = useDialogStore();
+      const studyStore = useStudyStore();
       apiStore.$reset();
       dialogStore.$reset();
+      studyStore.$reset();
       localStorage.clear();
     },
     logout() {

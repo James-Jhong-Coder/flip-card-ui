@@ -16,20 +16,6 @@ const dialogStore = useDialogStore();
 
 const visible = defineModel<boolean>('visible', { default: false });
 
-// const onSubmit = handleSubmit((values) => {
-//   dashboardStore
-//     .updateFlashCard({
-//       cardId: props.flashCardData?.id,
-//       language: values.language,
-//       front: values.front,
-//       back: values.back,
-//     })
-//     .then(() => {
-//       visible.value = false;
-//       dialogStore.show('alert', { message: '新增成功' });
-//     });
-// });
-
 const onDeleteFlashCard = () => {
   dashboardStore
     .deleteFlashCard({
