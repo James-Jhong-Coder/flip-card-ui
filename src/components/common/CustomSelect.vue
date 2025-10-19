@@ -38,7 +38,7 @@ const hasTitle = computed(() => {
       :option-value="optionValue"
       :placeholder="placeholder"
       :pt="{
-        root: ['!border-gray-390'],
+        root: ['!border-gray-390', '!h-[2.5rem]'],
         option: ({ context }) => ({
           class: [context.selected ? '!bg-gray-760 !text-black' : 'bg-transparent'],
         }),
