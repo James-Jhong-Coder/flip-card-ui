@@ -8,6 +8,7 @@ import type {
   LoginPayload,
   LoginResponse,
   RegisterPayload,
+  UpdateFlashCardPayload,
 } from './types';
 import type { AxiosResponse } from 'axios';
 
@@ -39,8 +40,8 @@ export const POST_FLASH_CARD = (payload: CreateFlashCardPayload) => {
   return instance.post(endPoints.FLASH_CARD, payload);
 };
 
-export const PATCH_FLASH_CARD = () => {
-  return instance.patch(endPoints.FLASH_CARD);
+export const PATCH_FLASH_CARD = (payload: UpdateFlashCardPayload) => {
+  return instance.patch(endPoints.FLASH_CARD, payload);
 };
 
 export const DELETE_FLASH_CARD = () => {

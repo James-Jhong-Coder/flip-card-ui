@@ -3,7 +3,7 @@ import { useForm } from 'vee-validate';
 import { useDashboardStore } from '@/stores/dashboard';
 import { useI18n } from 'vue-i18n';
 import { object, string } from 'yup';
-import { computed, watch } from 'vue';
+import { computed, nextTick, watch } from 'vue';
 import type { LanguageOption } from '@/types/ui/flipCard';
 const { t } = useI18n();
 const dashboardStore = useDashboardStore();
@@ -33,15 +33,13 @@ const computedLanguageOption = computed<LanguageOption[]>(() => {
 });
 
 const onSearch = () => {
-  dashboardStore.getFlashCardList({
-    language: language.value,
-    front: front.value,
-    back: back.value,
-  });
+  dashboardStore.getFlashCardList();
 };
 const onClear = () => {
   resetForm();
-  onSearch();
+  nextTick(() => {
+    onSearch();
+  })
 };
 
 const [language, languageAttrs] = defineField('language');
@@ -77,9 +75,7 @@ watch(
       </div>
       <div class="flex items-center justify-end mt-4">
         <CustomButton shape="square" @click="onClear">清除</CustomButton>
-        <CustomButton variant="solid" shape="square" class="ml-2" @click="onSearch"
-          >搜尋</CustomButton
-        >
+        <CustomButton variant="solid" shape="square" class="ml-2" @click="onSearch">搜尋</CustomButton>
       </div>
     </BaseCard>
   </div>

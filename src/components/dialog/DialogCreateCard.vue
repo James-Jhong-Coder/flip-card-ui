@@ -46,6 +46,7 @@ const onSubmit = handleSubmit((values) => {
     })
     .then(() => {
       visible.value = false;
+      dashboardStore.getFlashCardList();
       dialogStore.show('alert', { message: '新增成功' });
     });
 });
@@ -98,6 +99,7 @@ defineEmits<{
 
 <style scoped>
 @reference "@/styles/global.css";
+
 .dialog {
   @apply p-4;
 }

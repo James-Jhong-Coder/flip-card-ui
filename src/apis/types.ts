@@ -28,6 +28,10 @@ export interface CreateFlashCardPayload {
   back: string;
 }
 
+export interface UpdateFlashCardPayload extends CreateFlashCardPayload {
+  cardId?: number;
+}
+
 export interface GetFlashCardListQuery {
   language?: string | null;
   front?: string;

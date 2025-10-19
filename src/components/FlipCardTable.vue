@@ -4,13 +4,21 @@ import Column from 'primevue/column';
 import dayjs from 'dayjs';
 import { isEmpty } from 'lodash';
 import { useDashboardStore } from '@/stores/dashboard';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+import type { FlashCardItem } from '@/apis/types';
 const dashboardStore = useDashboardStore();
 const computedList = computed(() => {
   return dashboardStore.flashCardList?.items || [];
 });
 const formatDate = (timestamp: number) => {
   return dayjs(timestamp).format('YYYY-MM-DD HH:mm:ss');
+};
+const showEditFlashCardDialog = ref<boolean>(false);
+const editFlashCardDialogData = ref<FlashCardItem | null>(null);
+
+const onOpenEditDialog = (data: FlashCardItem) => {
+  showEditFlashCardDialog.value = true;
+  editFlashCardDialogData.value = data;
 };
 </script>
 
@@ -38,7 +46,7 @@ const formatDate = (timestamp: number) => {
       <Column header="操作" header-class="column-text-center">
         <template #body="{ data }">
           <div class="flex items-center">
-            <CustomButton variant="outline" shape="square">
+            <CustomButton variant="outline" shape="square" @click="onOpenEditDialog(data)">
               <SvgIcon name="icon_edit" class="w-3 h-3" />
             </CustomButton>
             <CustomButton variant="outline" shape="square" class="ml-4">
@@ -49,6 +57,11 @@ const formatDate = (timestamp: number) => {
       </Column>
     </DataTable>
     <span v-else>{{ $t('flashCardEmptyHint') }}</span>
+    <DialogEditCard
+      v-if="showEditFlashCardDialog"
+      v-model:visible="showEditFlashCardDialog"
+      :flash-card-data="editFlashCardDialogData"
+    />
   </div>
 </template>
 

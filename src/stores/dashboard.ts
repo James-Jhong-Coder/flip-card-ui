@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia';
-import { GET_FLASH_CARD_STATS } from '@/apis/api';
+import { GET_FLASH_CARD_STATS, PATCH_FLASH_CARD } from '@/apis/api';
 import type {
   CreateFlashCardPayload,
   FlashCardListResponse,
   GetFlashCardListQuery,
   GetFlashCardStatsResponse,
+  UpdateFlashCardPayload,
 } from '@/apis/types';
 import { POST_FLASH_CARD, GET_FLASH_CARD } from '@/apis/api';
 
@@ -50,10 +51,16 @@ export const useDashboardStore = defineStore('dashboard', {
         this.getFlashCardStats();
       });
     },
-    getFlashCardList(query: GetFlashCardListQuery) {
+    updateFlashCard(payload: UpdateFlashCardPayload) {
+      return PATCH_FLASH_CARD(payload).then(() => {
+        this.getFlashCardList();
+      });
+    },
+    getFlashCardList() {
       GET_FLASH_CARD({
-        ...query,
-        language: query.language === 'all' ? null : query.language,
+        language: this.searchParams.language === 'all' ? null : this.searchParams.language,
+        front: this.searchParams.front,
+        back: this.searchParams.back,
       }).then((res) => {
         this.updateState({
           flashCardList: res.data,
