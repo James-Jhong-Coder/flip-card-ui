@@ -18,6 +18,7 @@ declare module 'vue' {
     DialogDeleteCard: typeof import('./components/dialog/DialogDeleteCard.vue')['default']
     DialogEditCard: typeof import('./components/dialog/DialogEditCard.vue')['default']
     DialogSelectStudyLanguage: typeof import('./components/dialog/DialogSelectStudyLanguage.vue')['default']
+    FilterGeneralInput: typeof import('./components/common/FilterGeneralInput.vue')['default']
     FilterSelect: typeof import('./components/common/FilterSelect.vue')['default']
     FlipCard: typeof import('./components/FlipCard.vue')['default']
     FlipCardCategory: typeof import('./components/FlipCardCategory.vue')['default']

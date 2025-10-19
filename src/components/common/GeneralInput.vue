@@ -6,7 +6,6 @@ type VeeValidateAttrs =
   | (BaseFieldProps & Record<string, unknown>);
 
 interface InputProps {
-  modelValue?: string | number;
   name?: string;
   type?: string;
   title?: string;
@@ -17,20 +16,22 @@ interface InputProps {
   veeValidateAttrs?: VeeValidateAttrs;
 }
 
+const modelValue = defineModel<string | number | null>({ default: null });
+
 const props = withDefaults(defineProps<InputProps>(), {
-  modelValue: '',
+  // modelValue: '',
   type: 'text',
   veeValidateAttrs: () => ({} as any),
 });
 
-const emit = defineEmits<{
-  'update:modelValue': [val: string];
-}>();
+// const emit = defineEmits<{
+//   'update:modelValue': [val: string];
+// }>();
 
-const onInput = (e: Event) => {
-  const val = (e.target as HTMLInputElement).value;
-  emit('update:modelValue', val);
-};
+// const onInput = (e: Event) => {
+//   const val = (e.target as HTMLInputElement).value;
+//   emit('update:modelValue', val);
+// };
 const hasError = computed(() => {
   return !!props.errorMessage;
 });
@@ -48,12 +49,12 @@ const hasError = computed(() => {
     >
       <input
         :type="type"
+        v-model="modelValue"
         v-bind="veeValidateAttrs"
         :placeholder="placeholder"
         :disabled="disabled"
         :value="modelValue"
         class="input"
-        @input="onInput"
       />
     </label>
     <span v-if="hasError" class="mt-1 text-xs text-red-600">

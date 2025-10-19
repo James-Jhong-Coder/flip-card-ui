@@ -70,8 +70,8 @@ watch(
       </div>
       <div class="table-filter mt-3">
         <FilterSelect v-model="language" title="語言" :options="computedLanguageOption" />
-        <GeneralInput v-model="front" :vee-validate-attrs="frontAttrs" />
-        <GeneralInput v-model="back" :vee-validate-attrs="backAttrs" />
+        <FilterGeneralInput v-model="front" title="正面" />
+        <FilterGeneralInput v-model="back" title="背面" />
       </div>
       <div class="flex items-center justify-end mt-4">
         <CustomButton shape="square" @click="onClear">清除</CustomButton>
