@@ -1,37 +1,84 @@
 <script setup lang="ts">
-interface Props {
-  cards: FlipCard[];
-}
-
-defineProps<Props>();
-
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-import type { FlipCard } from '@/types/ui/flipCard';
+import dayjs from 'dayjs';
+import { isEmpty } from 'lodash';
+import { useDashboardStore } from '@/stores/dashboard';
+import { computed, ref } from 'vue';
+import type { FlashCardItem } from '@/apis/types';
+const dashboardStore = useDashboardStore();
+const computedList = computed(() => {
+  return dashboardStore.flashCardList?.items || [];
+});
+const formatDate = (timestamp: number) => {
+  return dayjs(timestamp).format('YYYY-MM-DD HH:mm:ss');
+};
+const showEditFlashCardDialog = ref<boolean>(false);
+const editFlashCardDialogData = ref<FlashCardItem | null>(null);
+const showDeleteFlashCardDialog = ref<boolean>(false);
+const deleteFlashCardDialogData = ref<FlashCardItem | null>(null);
+
+const onOpenEditDialog = (data: FlashCardItem) => {
+  showEditFlashCardDialog.value = true;
+  editFlashCardDialogData.value = data;
+};
+
+const onOpenDeleteDialog = (data: FlashCardItem) => {
+  showDeleteFlashCardDialog.value = true;
+  deleteFlashCardDialogData.value = data;
+};
 </script>
 
 <template>
   <div class="flex flex-col">
-    <DataTable :value="cards" showGridlines>
+    <DataTable v-if="!isEmpty(computedList)" :value="computedList" showGridlines>
       <Column field="rowNo" header="序號"></Column>
-      <Column field="lang" header="語言"></Column>
+      <Column header="語言">
+        <template #body="{ data }">
+          <span>{{ $t(`cardLanguage.${data.language}`) }}</span>
+        </template>
+      </Column>
       <Column field="front" header="正面"></Column>
       <Column field="back" header="背面"></Column>
-      <Column field="createdAt" header="建立日期"></Column>
-      <Column field="updateAt" header="修改日期"></Column>
+      <Column header="建立日期">
+        <template #body="{ data }">
+          <span>{{ formatDate(data.createdAt) }}</span>
+        </template>
+      </Column>
+      <Column header="修改日期">
+        <template #body="{ data }">
+          <span>{{ formatDate(data.updatedAt) }}</span>
+        </template>
+      </Column>
       <Column header="操作" header-class="column-text-center">
         <template #body="{ data }">
           <div class="flex items-center">
-            <CustomButton variant="outline" shape="square">
+            <CustomButton variant="outline" shape="square" @click="onOpenEditDialog(data)">
               <SvgIcon name="icon_edit" class="w-3 h-3" />
             </CustomButton>
-            <CustomButton variant="outline" shape="square" class="ml-4">
+            <CustomButton
+              variant="outline"
+              shape="square"
+              class="ml-4"
+              @click="onOpenDeleteDialog(data)"
+            >
               <SvgIcon name="icon_delete" class="w-3 h-3 text-red-600" />
             </CustomButton>
           </div>
         </template>
       </Column>
     </DataTable>
+    <span v-else>{{ $t('flashCardEmptyHint') }}</span>
+    <DialogEditCard
+      v-if="showEditFlashCardDialog"
+      v-model:visible="showEditFlashCardDialog"
+      :flash-card-data="editFlashCardDialogData"
+    />
+    <DialogDeleteCard
+      v-if="showDeleteFlashCardDialog"
+      v-model:visible="showDeleteFlashCardDialog"
+      :flash-card-data="deleteFlashCardDialogData"
+    />
   </div>
 </template>
 

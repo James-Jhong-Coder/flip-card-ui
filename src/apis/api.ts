@@ -1,6 +1,16 @@
 import instance from '@/apis/instance';
 import endPoints from '@/apis/endPoints';
-import type { LoginPayload, LoginResponse, RegisterPayload } from './types';
+import type {
+  CreateFlashCardPayload,
+  DeleteFlashCardPayload,
+  FlashCardListResponse,
+  GetFlashCardListQuery,
+  GetFlashCardStatsResponse,
+  LoginPayload,
+  LoginResponse,
+  RegisterPayload,
+  UpdateFlashCardPayload,
+} from './types';
 import type { AxiosResponse } from 'axios';
 
 export const POST_AUTH_LOGIN = (payload: LoginPayload): Promise<AxiosResponse<LoginResponse>> => {
@@ -13,4 +23,30 @@ export const POST_AUTH_REGISTER = (payload: RegisterPayload) => {
 
 export const GET_USERS_PROFILE = (): Promise<AxiosResponse<LoginResponse>> => {
   return instance.get(endPoints.USERS_PROFILE);
+};
+
+export const GET_FLASH_CARD_STATS = (): Promise<AxiosResponse<GetFlashCardStatsResponse>> => {
+  return instance.get(endPoints.FLASH_CARD_STATS);
+};
+
+export const GET_FLASH_CARD = (
+  query: GetFlashCardListQuery,
+): Promise<AxiosResponse<FlashCardListResponse>> => {
+  return instance.get(endPoints.FLASH_CARD, {
+    params: query,
+  });
+};
+
+export const POST_FLASH_CARD = (payload: CreateFlashCardPayload) => {
+  return instance.post(endPoints.FLASH_CARD, payload);
+};
+
+export const PATCH_FLASH_CARD = (payload: UpdateFlashCardPayload) => {
+  return instance.patch(endPoints.FLASH_CARD, payload);
+};
+
+export const DELETE_FLASH_CARD = (payload: DeleteFlashCardPayload) => {
+  return instance.delete(endPoints.FLASH_CARD, {
+    data: payload,
+  });
 };

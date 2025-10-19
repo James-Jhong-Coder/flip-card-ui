@@ -1,0 +1,18 @@
+{
+  "all": "全部",
+  "cardLanguage": {
+    "EN": "英文",
+    "CN": "中文",
+    "JP": "日文"
+  },
+  "cardTabs": {
+    "all": "全部",
+    "EN": "英文",
+    "JP": "日文"
+  },
+  "myCardsTitle": "我的字卡",
+  "searchFilter": "搜尋條件",
+  "addNewCard": "新增字卡",
+  "startLearning": "開始學習",
+  "flashCardEmptyHint": "還沒有新增任何字卡，快點來新增第一張字卡吧 !"
+}

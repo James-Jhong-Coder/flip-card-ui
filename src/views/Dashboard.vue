@@ -1,41 +1,54 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import { computed, ref } from 'vue';
+import { useDashboardStore } from '@/stores/dashboard';
 import DialogCreateCard from '@/components/dialog/DialogCreateCard.vue';
-import { ref } from 'vue';
 
+const dashboardStore = useDashboardStore();
 const showCreateCardDialog = ref(false);
 const onOpenCreateCardDialogHandler = () => {
   showCreateCardDialog.value = true;
 };
 const router = useRouter();
+const computedTotalFlashCards = computed(() => {
+  return Number(dashboardStore.stats.total || 0);
+});
 const onGotoQuiz = () => {
-  router.push({
-    name: 'quiz',
-  });
+  if (computedTotalFlashCards.value > 0) {
+    router.push({
+      name: 'quiz',
+    });
+  }
 };
+const onGetFlashCardStats = () => {
+  dashboardStore.getFlashCardStats();
+};
+onGetFlashCardStats();
 </script>
 
 <template>
   <section class="dashboard">
     <div class="content mt-5">
-      <div class="summary">
-        <StatCard title="總字卡數" />
-        <StatCard title="英文字卡" english-title="en" />
-        <StatCard title="日文字卡" english-title="jp" />
-      </div>
+      <StatsPanel :stats="dashboardStore.stats" />
       <div class="flex items-center mt-6">
         <CustomButton variant="solid" shape="square" @click="onOpenCreateCardDialogHandler">
           <SvgIcon name="icon_plus" class="w-4 h-4" />
-          <span class="ml-1">新增字卡</span>
+          <span class="ml-1">{{ $t('addNewCard') }}</span>
         </CustomButton>
-        <CustomButton variant="outline" shape="square" class="ml-3 text-white" @click="onGotoQuiz">
+        <CustomButton
+          variant="outline"
+          shape="square"
+          class="ml-3 text-white"
+          :disabled="computedTotalFlashCards === 0"
+          @click="onGotoQuiz"
+        >
           <SvgIcon name="icon_play" class="w-4 h-4" />
-          <span class="ml-1">開始學習</span>
+          <span class="ml-1">{{ $t('startLearning') }}</span>
         </CustomButton>
       </div>
       <FlipCardListSection class="mt-5" />
     </div>
-    <DialogCreateCard v-model:visible="showCreateCardDialog" />
+    <DialogCreateCard v-if="showCreateCardDialog" v-model:visible="showCreateCardDialog" />
   </section>
 </template>
 

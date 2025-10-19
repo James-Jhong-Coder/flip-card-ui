@@ -4,7 +4,7 @@ import { computed } from 'vue';
 
 interface option {
   text: string;
-  value: number | string;
+  value: number | string | null;
 }
 
 interface Props {
@@ -37,6 +37,12 @@ const hasTitle = computed(() => {
       :option-label="optionLabel"
       :option-value="optionValue"
       :placeholder="placeholder"
+      :pt="{
+        root: ['!border-gray-390'],
+        option: ({ context }) => ({
+          class: [context.selected ? '!bg-gray-760 !text-black' : 'bg-transparent'],
+        }),
+      }"
     />
   </div>
 </template>

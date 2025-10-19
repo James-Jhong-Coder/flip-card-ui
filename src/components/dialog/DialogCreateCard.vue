@@ -1,17 +1,55 @@
 <script setup lang="ts">
 import PrimeVueDialog from 'primevue/dialog';
-import { computed, ref } from 'vue';
+import { useForm } from 'vee-validate';
+import { computed } from 'vue';
+import { object, string } from 'yup';
+import { useI18n } from 'vue-i18n';
+import { useDashboardStore } from '@/stores/dashboard';
+import { useDialogStore } from '@/stores/dialog';
+const dashboardStore = useDashboardStore();
+const dialogStore = useDialogStore();
+const { t } = useI18n();
+
+const schema = object({
+  language: string().required('請選擇語言'),
+  front: string().trim().required('請輸入正面內容').max(100, '正面內容請在 100 字以內'),
+  back: string().trim().required('請輸入背面內容').max(100, '背面內容請在 100 字以內'),
+});
+const { defineField, handleSubmit, errors } = useForm({
+  validationSchema: schema,
+  initialValues: {
+    language: 'EN',
+    front: '',
+    back: '',
+  },
+});
+
+const [language, languageAttr] = defineField('language');
+const [front, frontAttrs] = defineField('front');
+const [back, backAttrs] = defineField('back');
 
 const visible = defineModel<boolean>('visible', { default: false });
 
 const computedLanguageOption = computed(() => {
-  return ['英文', '日文'].map((item, index) => ({
-    text: item,
-    value: index,
+  return ['EN', 'JP'].map((item) => ({
+    text: t(`cardLanguage.${item}`),
+    value: item,
   }));
 });
 
-const selectedLanguage = ref(null);
+const onSubmit = handleSubmit((values) => {
+  dashboardStore
+    .createFlashCard({
+      language: values.language,
+      front: values.front,
+      back: values.back,
+    })
+    .then(() => {
+      visible.value = false;
+      dashboardStore.getFlashCardList();
+      dialogStore.show('alert', { message: '新增成功' });
+    });
+});
 
 defineEmits<{
   'update:visible': [visible: boolean];
@@ -27,13 +65,32 @@ defineEmits<{
           <SvgIcon name="icon_close_dialog" class="w-3 h-3 icon-close" @click="closeCallback" />
         </div>
         <div class="dialog-body mt-5">
-          <CustomSelect v-model="selectedLanguage" title="語言" :options="computedLanguageOption" />
-          <GeneralInput title="正面內容" class="mt-4" />
-          <GeneralInput title="背面內容" class="mt-4" />
+          <CustomSelect
+            v-model="language"
+            title="語言"
+            :options="computedLanguageOption"
+            :error-message="errors['language']"
+          />
+          <GeneralInput
+            v-model="front"
+            title="正面內容"
+            class="mt-4"
+            :vee-validate-attrs="frontAttrs"
+            :error-message="errors['front']"
+          />
+          <GeneralInput
+            v-model="back"
+            title="背面內容"
+            class="mt-4"
+            :vee-validate-attrs="backAttrs"
+            :error-message="errors['back']"
+          />
         </div>
         <div class="dialog-footer mt-4 justify-center">
           <CustomButton variant="outline" shape="square" @click="closeCallback">取消</CustomButton>
-          <CustomButton variant="solid" shape="square" class="ml-2">確定</CustomButton>
+          <CustomButton variant="solid" shape="square" class="ml-2" @click="onSubmit"
+            >確定</CustomButton
+          >
         </div>
       </div>
     </template>
@@ -42,6 +99,7 @@ defineEmits<{
 
 <style scoped>
 @reference "@/styles/global.css";
+
 .dialog {
   @apply p-4;
 }
