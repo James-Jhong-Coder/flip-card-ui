@@ -18,6 +18,9 @@ const onGotoQuiz = (selectedLanguage: string) => {
     });
     router.push({
       name: 'quiz',
+      query: {
+        language: selectedLanguage,
+      },
     });
   }
 };

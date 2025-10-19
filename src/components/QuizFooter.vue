@@ -1,12 +1,24 @@
+<script setup lang="ts">
+import { useStudyStore } from '@/stores/study';
+const studyStore = useStudyStore();
+
+const onMoveToNextCard = () => {
+  studyStore.moveToNextCard();
+};
+const onMoveToPreviousCard = () => {
+  studyStore.moveToPreviousCard();
+};
+</script>
+
 <template>
   <div class="quiz-footer">
     <div class="content">
       <div class="flex items-center w-full">
-        <custom-button variant="outline" shape="square">
+        <custom-button variant="outline" shape="square" @click="onMoveToPreviousCard">
           <svg-icon name="icon_previous" class="w-3 h-3 mr-2" />
           <span>上一張</span>
         </custom-button>
-        <custom-button variant="outline" shape="square" class="ml-auto">
+        <custom-button variant="outline" shape="square" class="ml-auto" @click="onMoveToNextCard">
           <span>下一張</span>
           <svg-icon name="icon_next" class="w-3 h-3 ml-2" />
         </custom-button>

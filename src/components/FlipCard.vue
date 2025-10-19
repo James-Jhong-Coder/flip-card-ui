@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 interface Props {
-  front: string;
-  back: string;
+  front?: string;
+  back?: string;
 }
 
-defineProps<Props>();
-
+const props = defineProps<Props>();
 const isFlip = ref(false);
+
+watch([() => props.front, () => props.back], () => {
+  isFlip.value = false;
+});
 </script>
 
 <template>

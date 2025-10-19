@@ -4,4 +4,5 @@ export default {
   FLASH_CARD_STATS: 'flash-card/stats',
   FLASH_CARD: 'flash-card',
   USERS_PROFILE: 'users/profile',
+  FLASH_CARD_STUDY: 'flash-card/study',
 };
