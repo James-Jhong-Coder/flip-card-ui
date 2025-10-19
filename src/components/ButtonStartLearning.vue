@@ -1,15 +1,26 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useStudyStore } from '@/stores/study';
 
 interface Props {
   totalFlashCards: number;
 }
-
+const router = useRouter();
 const props = defineProps<Props>();
-
+const studyStore = useStudyStore();
 const showSelectStudyLanguageDialog = ref<boolean>(false);
 
-const onGotoQuiz = () => {};
+const onGotoQuiz = (selectedLanguage: string) => {
+  if (props.totalFlashCards > 0) {
+    studyStore.updateState({
+      selectedLanguage,
+    });
+    router.push({
+      name: 'quiz',
+    });
+  }
+};
 
 const onOpenSelectStudyLanguageDialog = () => {
   showSelectStudyLanguageDialog.value = true;
@@ -31,7 +42,7 @@ const onOpenSelectStudyLanguageDialog = () => {
     <DialogSelectStudyLanguage
       v-if="showSelectStudyLanguageDialog"
       v-model:visible="showSelectStudyLanguageDialog"
-      @onGotoQuiz="() => onGotoQuiz()"
+      @onGotoQuiz="(selectedLanguage) => onGotoQuiz(selectedLanguage)"
     />
   </div>
 </template>

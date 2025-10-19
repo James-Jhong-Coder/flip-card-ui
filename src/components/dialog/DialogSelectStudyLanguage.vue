@@ -5,8 +5,9 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 const visible = defineModel<boolean>('visible', { default: false });
 
-defineEmits<{
+const emits = defineEmits<{
   'update:visible': [visible: boolean];
+  onGotoQuiz: [selectedLanguage: string];
 }>();
 
 const selectedStudyLanguage = ref<string>('EN');
@@ -16,6 +17,10 @@ const computedLanguageOption = computed(() => {
     value: item,
   }));
 });
+
+const onConfirm = () => {
+  emits('onGotoQuiz', selectedStudyLanguage.value);
+};
 </script>
 
 <template>
@@ -30,7 +35,9 @@ const computedLanguageOption = computed(() => {
         </div>
         <div class="dialog-footer mt-4 justify-center">
           <CustomButton variant="outline" shape="square" @click="closeCallback">取消</CustomButton>
-          <CustomButton variant="solid" shape="square" class="ml-2">確定</CustomButton>
+          <CustomButton variant="solid" shape="square" class="ml-2" @click="onConfirm"
+            >確定</CustomButton
+          >
         </div>
       </div>
     </template>

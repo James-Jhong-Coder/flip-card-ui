@@ -13,13 +13,6 @@ const router = useRouter();
 const computedTotalFlashCards = computed(() => {
   return Number(dashboardStore.stats.total || 0);
 });
-const onGotoQuiz = () => {
-  if (computedTotalFlashCards.value > 0) {
-    router.push({
-      name: 'quiz',
-    });
-  }
-};
 const onGetFlashCardStats = () => {
   dashboardStore.getFlashCardStats();
 };
