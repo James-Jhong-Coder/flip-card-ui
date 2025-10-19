@@ -35,16 +35,7 @@ onGetFlashCardStats();
           <SvgIcon name="icon_plus" class="w-4 h-4" />
           <span class="ml-1">{{ $t('addNewCard') }}</span>
         </CustomButton>
-        <CustomButton
-          variant="outline"
-          shape="square"
-          class="ml-3 text-white"
-          :disabled="computedTotalFlashCards === 0"
-          @click="onGotoQuiz"
-        >
-          <SvgIcon name="icon_play" class="w-4 h-4" />
-          <span class="ml-1">{{ $t('startLearning') }}</span>
-        </CustomButton>
+        <ButtonStartLearning class="ml-3 fff" :total-flash-cards="computedTotalFlashCards" />
       </div>
       <FlipCardListSection class="mt-5" />
     </div>
