@@ -32,7 +32,7 @@ const onCloseHandler = () => {
         <span class="ml-2">錯誤提示</span>
       </div>
     </template>
-    <span>{{ errorMessage }}</span>
+    <span class="text-gray-260">{{ errorMessage }}</span>
     <template #footer>
       <div class="flex items-center">
         <CustomButton shape="square" @click="onCloseHandler">關閉</CustomButton>

@@ -30,10 +30,10 @@ const onConfirm = () => {
   >
     <template #header>
       <div class="flex items-center text-lg font-semibold">
-        <span class="ml-2">系統提示</span>
+        <span>系統提示</span>
       </div>
     </template>
-    <span>{{ confirmMessage }}</span>
+    <span class="text-gray-260">{{ confirmMessage }}</span>
     <template #footer>
       <div class="flex items-center">
         <CustomButton variant="solid" shape="square" @click="onConfirm">確定</CustomButton>
