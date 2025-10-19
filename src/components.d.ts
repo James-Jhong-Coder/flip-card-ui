@@ -14,6 +14,7 @@ declare module 'vue' {
     CustomButton: typeof import('./components/common/CustomButton.vue')['default']
     CustomSelect: typeof import('./components/common/CustomSelect.vue')['default']
     DialogCreateCard: typeof import('./components/dialog/DialogCreateCard.vue')['default']
+    DialogDeleteCard: typeof import('./components/dialog/DialogDeleteCard.vue')['default']
     DialogEditCard: typeof import('./components/dialog/DialogEditCard.vue')['default']
     FlipCard: typeof import('./components/FlipCard.vue')['default']
     FlipCardCategory: typeof import('./components/FlipCardCategory.vue')['default']

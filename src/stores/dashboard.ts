@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
-import { GET_FLASH_CARD_STATS, PATCH_FLASH_CARD } from '@/apis/api';
+import { DELETE_FLASH_CARD, GET_FLASH_CARD_STATS, PATCH_FLASH_CARD } from '@/apis/api';
 import type {
   CreateFlashCardPayload,
+  DeleteFlashCardPayload,
   FlashCardListResponse,
   GetFlashCardListQuery,
   GetFlashCardStatsResponse,
@@ -53,6 +54,11 @@ export const useDashboardStore = defineStore('dashboard', {
     },
     updateFlashCard(payload: UpdateFlashCardPayload) {
       return PATCH_FLASH_CARD(payload).then(() => {
+        this.getFlashCardList();
+      });
+    },
+    deleteFlashCard(payload: DeleteFlashCardPayload) {
+      return DELETE_FLASH_CARD(payload).then(() => {
         this.getFlashCardList();
       });
     },

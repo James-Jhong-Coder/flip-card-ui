@@ -2,6 +2,7 @@ import instance from '@/apis/instance';
 import endPoints from '@/apis/endPoints';
 import type {
   CreateFlashCardPayload,
+  DeleteFlashCardPayload,
   FlashCardListResponse,
   GetFlashCardListQuery,
   GetFlashCardStatsResponse,
@@ -44,6 +45,8 @@ export const PATCH_FLASH_CARD = (payload: UpdateFlashCardPayload) => {
   return instance.patch(endPoints.FLASH_CARD, payload);
 };
 
-export const DELETE_FLASH_CARD = () => {
-  return instance.delete(endPoints.FLASH_CARD);
+export const DELETE_FLASH_CARD = (payload: DeleteFlashCardPayload) => {
+  return instance.delete(endPoints.FLASH_CARD, {
+    data: payload,
+  });
 };

@@ -15,10 +15,17 @@ const formatDate = (timestamp: number) => {
 };
 const showEditFlashCardDialog = ref<boolean>(false);
 const editFlashCardDialogData = ref<FlashCardItem | null>(null);
+const showDeleteFlashCardDialog = ref<boolean>(false);
+const deleteFlashCardDialogData = ref<FlashCardItem | null>(null);
 
 const onOpenEditDialog = (data: FlashCardItem) => {
   showEditFlashCardDialog.value = true;
   editFlashCardDialogData.value = data;
+};
+
+const onOpenDeleteDialog = (data: FlashCardItem) => {
+  showDeleteFlashCardDialog.value = true;
+  deleteFlashCardDialogData.value = data;
 };
 </script>
 
@@ -49,7 +56,12 @@ const onOpenEditDialog = (data: FlashCardItem) => {
             <CustomButton variant="outline" shape="square" @click="onOpenEditDialog(data)">
               <SvgIcon name="icon_edit" class="w-3 h-3" />
             </CustomButton>
-            <CustomButton variant="outline" shape="square" class="ml-4">
+            <CustomButton
+              variant="outline"
+              shape="square"
+              class="ml-4"
+              @click="onOpenDeleteDialog(data)"
+            >
               <SvgIcon name="icon_delete" class="w-3 h-3 text-red-600" />
             </CustomButton>
           </div>
@@ -61,6 +73,11 @@ const onOpenEditDialog = (data: FlashCardItem) => {
       v-if="showEditFlashCardDialog"
       v-model:visible="showEditFlashCardDialog"
       :flash-card-data="editFlashCardDialogData"
+    />
+    <DialogDeleteCard
+      v-if="showDeleteFlashCardDialog"
+      v-model:visible="showDeleteFlashCardDialog"
+      :flash-card-data="deleteFlashCardDialogData"
     />
   </div>
 </template>

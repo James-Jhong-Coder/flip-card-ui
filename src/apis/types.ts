@@ -32,6 +32,10 @@ export interface UpdateFlashCardPayload extends CreateFlashCardPayload {
   cardId?: number;
 }
 
+export interface DeleteFlashCardPayload {
+  cardId?: number;
+}
+
 export interface GetFlashCardListQuery {
   language?: string | null;
   front?: string;
