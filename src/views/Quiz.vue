@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { useStudyStore } from '@/stores/study';
-import { computed, ref, onBeforeUnmount } from 'vue';
+import { computed, onBeforeUnmount } from 'vue';
+import { useQuiz } from '@/hook/useQuiz';
+const { selectedLanguage } = useQuiz();
 const studyStore = useStudyStore();
 
 const onGetStudyFlashCards = () => {
   studyStore.getStudyFlashCards({
-    language: studyStore.selectedLanguage,
+    language: selectedLanguage,
   });
 };
 
