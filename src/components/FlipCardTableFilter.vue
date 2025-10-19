@@ -39,7 +39,7 @@ const onClear = () => {
   resetForm();
   nextTick(() => {
     onSearch();
-  })
+  });
 };
 
 const [language, languageAttrs] = defineField('language');
@@ -69,19 +69,22 @@ watch(
         <span class="ml-2">{{ $t('searchFilter') }}</span>
       </div>
       <div class="table-filter mt-3">
-        <CustomSelect v-model="language" :options="computedLanguageOption" />
+        <FilterSelect v-model="language" title="語言" :options="computedLanguageOption" />
         <GeneralInput v-model="front" :vee-validate-attrs="frontAttrs" />
         <GeneralInput v-model="back" :vee-validate-attrs="backAttrs" />
       </div>
       <div class="flex items-center justify-end mt-4">
         <CustomButton shape="square" @click="onClear">清除</CustomButton>
-        <CustomButton variant="solid" shape="square" class="ml-2" @click="onSearch">搜尋</CustomButton>
+        <CustomButton variant="solid" shape="square" class="ml-2" @click="onSearch"
+          >搜尋</CustomButton
+        >
       </div>
     </BaseCard>
   </div>
 </template>
 
 <style scoped>
+@reference "@/styles/global.css";
 .table-filter {
   @apply grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

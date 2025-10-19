@@ -83,6 +83,7 @@ const onOpenDeleteDialog = (data: FlashCardItem) => {
 </template>
 
 <style>
+@reference "@/styles/global.css";
 .column-text-center {
   @apply text-center;
 }

@@ -1,11 +1,7 @@
 <script setup lang="ts">
+import type { Option } from '@/types/ui/select';
 import PrimeVueSelect from 'primevue/select';
 import { computed } from 'vue';
-
-interface option {
-  text: string;
-  value: number | string | null;
-}
 
 interface Props {
   title?: string;
@@ -13,7 +9,7 @@ interface Props {
   errorMessage?: string;
   optionLabel?: string;
   optionValue?: string;
-  options?: option[];
+  options?: Option[];
 }
 
 const props = withDefaults(defineProps<Props>(), {
