@@ -6,7 +6,6 @@ type VeeValidateAttrs =
   | (BaseFieldProps & Record<string, unknown>);
 
 interface InputProps {
-  modelValue?: string | number;
   name?: string;
   type?: string;
   title?: string;
@@ -17,20 +16,22 @@ interface InputProps {
   veeValidateAttrs?: VeeValidateAttrs;
 }
 
+const modelValue = defineModel<string | number | null>({ default: null });
+
 const props = withDefaults(defineProps<InputProps>(), {
-  modelValue: '',
+  // modelValue: '',
   type: 'text',
   veeValidateAttrs: () => ({} as any),
 });
 
-const emit = defineEmits<{
-  'update:modelValue': [val: string];
-}>();
+// const emit = defineEmits<{
+//   'update:modelValue': [val: string];
+// }>();
 
-const onInput = (e: Event) => {
-  const val = (e.target as HTMLInputElement).value;
-  emit('update:modelValue', val);
-};
+// const onInput = (e: Event) => {
+//   const val = (e.target as HTMLInputElement).value;
+//   emit('update:modelValue', val);
+// };
 const hasError = computed(() => {
   return !!props.errorMessage;
 });
@@ -39,7 +40,7 @@ const hasError = computed(() => {
 <template>
   <div class="flex flex-col">
     <span v-if="title" class="mb-1 text-gray-700">{{ title }}</span>
-    <div
+    <label
       class="input-box"
       :class="{
         'has-error': hasError,
@@ -48,14 +49,14 @@ const hasError = computed(() => {
     >
       <input
         :type="type"
+        v-model="modelValue"
         v-bind="veeValidateAttrs"
         :placeholder="placeholder"
         :disabled="disabled"
         :value="modelValue"
         class="input"
-        @input="onInput"
       />
-    </div>
+    </label>
     <span v-if="hasError" class="mt-1 text-xs text-red-600">
       {{ errorMessage }}
     </span>
@@ -66,14 +67,15 @@ const hasError = computed(() => {
 @reference "@/styles/global.css";
 .input-box {
   @apply bg-gray-300 text-gray-700;
+  @apply h-[2.5rem];
   @apply rounded-md px-3 py-2;
-  @apply text-xs;
+  @apply text-xs cursor-text;
   @apply border border-transparent; /* 預設先有透明邊框，避免跳動 */
   @apply transition-colors duration-200 ease-in-out; /* 加入漸變 */
 }
 
 .input-box .input {
-  @apply w-full focus:outline-none;
+  @apply w-full focus:outline-none h-full;
 }
 
 .input-box .input::placeholder {

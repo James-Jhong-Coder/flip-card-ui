@@ -31,7 +31,7 @@ const onConfirm = () => {
           <span>選擇學習語言</span>
         </div>
         <div class="dialog-body mt-5">
-          <CustomSelect v-model="selectedStudyLanguage" :options="computedLanguageOption" />
+          <BaseSelect v-model="selectedStudyLanguage" :options="computedLanguageOption" />
         </div>
         <div class="dialog-footer mt-4 justify-center">
           <CustomButton variant="outline" shape="square" @click="closeCallback">取消</CustomButton>

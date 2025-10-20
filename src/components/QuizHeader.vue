@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import { useStudyStore } from '@/stores/study';
 import { useQuiz } from '@/hook/useQuiz';
 const { selectedLanguage } = useQuiz();
+const studyStore = useStudyStore();
 const router = useRouter();
 const onBackToDashboard = () => {
   router.replace({
@@ -18,11 +20,19 @@ const onBackToDashboard = () => {
           <CustomButton variant="outline" shape="square" @click="onBackToDashboard">
             <SvgIcon name="icon_home" class="w-3 h-3" />
           </CustomButton>
-          <QuizProgress class="ml-3" />
+          <QuizProgress
+            class="ml-3"
+            :current="studyStore.currentCardIndex + 1"
+            :total="studyStore.studyFlashCards.rows.length"
+          />
           <LanguageTag :tag="selectedLanguage" class="ml-3" />
           <FullScreenButton class="ml-auto" />
         </div>
-        <QuizProgressBar class="mt-3" />
+        <QuizProgressBar
+          class="mt-3"
+          :current="studyStore.currentCardIndex + 1"
+          :total="studyStore.studyFlashCards.rows.length"
+        />
       </div>
     </div>
   </div>
