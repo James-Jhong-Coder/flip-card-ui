@@ -37,15 +37,22 @@ defineEmits<{
     <template #container="{ closeCallback }">
       <div class="dialog">
         <div class="dialog-header">
-          <span>刪除字卡</span>
+          <SvgIcon name="icon_warning" class="w-4 h-4" />
+          <span class="ml-3">刪除字卡</span>
           <SvgIcon name="icon_close_dialog" class="w-3 h-3 icon-close" @click="closeCallback" />
         </div>
         <div class="dialog-body mt-5">
-          <span>是否確定刪除該張字卡</span>
-          <template v-if="!isEmpty(flashCardData)">
-            <span>正面 : {{ flashCardData.front }}</span>
-            <span>背面 : {{ flashCardData.back }}</span>
-          </template>
+          <div class="warning-card">
+            <div class="warning-card-header">
+              <span>是否確定刪除該張字卡</span>
+            </div>
+            <div class="warning-card-body">
+              <template v-if="!isEmpty(flashCardData)">
+                <span>正面 : {{ flashCardData.front }}</span>
+                <span>背面 : {{ flashCardData.back }}</span>
+              </template>
+            </div>
+          </div>
         </div>
         <div class="dialog-footer mt-4 justify-center">
           <CustomButton variant="outline" shape="square" @click="closeCallback">取消</CustomButton>
@@ -84,5 +91,17 @@ defineEmits<{
 
 .dialog-footer {
   @apply flex items-center;
+}
+
+.warning-card {
+  @apply rounded-lg border border-red-200;
+}
+
+.warning-card .warning-card-header {
+  @apply bg-red-100 px-3 py-2 rounded-t-lg;
+}
+
+.warning-card .warning-card-body {
+  @apply bg-red-150 p-4 flex flex-col;
 }
 </style>
