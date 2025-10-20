@@ -18,6 +18,10 @@
   --color-gray-700: #0a0a0a;
   --color-gray-750: #0d0d0d;
   --color-gray-760: #e9ebef;
+  --color-red-100: #ffebe9;
+  --color-red-150: #fff4f2;
+  --color-red-200: #ffcaca;
+  --color-red-500: #9e0812;
 }
 
 .card {
