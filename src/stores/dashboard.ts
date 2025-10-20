@@ -8,6 +8,7 @@ import type {
   GetFlashCardStatsResponse,
   UpdateFlashCardPayload,
 } from '@/apis/types';
+import { DEFAULT_ROWS_PER_PAGE } from '@/const/common';
 import { POST_FLASH_CARD, GET_FLASH_CARD } from '@/apis/api';
 
 interface DashBoardState {
@@ -27,6 +28,8 @@ export const useDashboardStore = defineStore('dashboard', {
       language: null,
       front: '',
       back: '',
+      page: 1,
+      limit: DEFAULT_ROWS_PER_PAGE,
     },
     flashCardList: {
       page: 1,
@@ -63,10 +66,13 @@ export const useDashboardStore = defineStore('dashboard', {
       });
     },
     getFlashCardList() {
+      console.log('getFlashCardList = ', this.searchParams);
       GET_FLASH_CARD({
         language: this.searchParams.language === 'all' ? null : this.searchParams.language,
         front: this.searchParams.front,
         back: this.searchParams.back,
+        page: this.searchParams.page,
+        limit: this.searchParams.limit,
       }).then((res) => {
         this.updateState({
           flashCardList: res.data,

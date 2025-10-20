@@ -40,6 +40,8 @@ export interface GetFlashCardListQuery {
   language?: string | null;
   front?: string;
   back?: string;
+  page: number;
+  limit: number;
 }
 
 export interface FlashCardItem {
