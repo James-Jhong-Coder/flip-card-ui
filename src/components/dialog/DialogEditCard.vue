@@ -32,7 +32,7 @@ const { defineField, handleSubmit, errors } = useForm({
   },
 });
 
-const [language, languageAttr] = defineField('language');
+const [language] = defineField('language');
 const [front, frontAttrs] = defineField('front');
 const [back, backAttrs] = defineField('back');
 
