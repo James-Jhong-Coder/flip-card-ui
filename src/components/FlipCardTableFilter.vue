@@ -53,6 +53,7 @@ watch(
   (newVal) => {
     dashboardStore.updateState({
       searchParams: {
+        ...dashboardStore.searchParams,
         ...newVal,
       },
     });
