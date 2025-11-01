@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
 import { computed, ref } from 'vue';
 import { useDashboardStore } from '@/stores/dashboard';
 import DialogCreateCard from '@/components/dialog/DialogCreateCard.vue';
@@ -9,7 +8,6 @@ const showCreateCardDialog = ref(false);
 const onOpenCreateCardDialogHandler = () => {
   showCreateCardDialog.value = true;
 };
-const router = useRouter();
 const computedTotalFlashCards = computed(() => {
   return Number(dashboardStore.stats.total || 0);
 });
