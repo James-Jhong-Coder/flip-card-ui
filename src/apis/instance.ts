@@ -3,7 +3,6 @@ import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axio
 import { v4 as uuidv4 } from 'uuid';
 import { useApiStore } from '@/stores/api';
 import { useDialogStore } from '@/stores/dialog';
-import { useProfileStore } from '@/stores/profile';
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,

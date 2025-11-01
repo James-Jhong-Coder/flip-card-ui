@@ -3,7 +3,6 @@ import endPoints from '@/apis/endPoints';
 import type {
   CreateFlashCardPayload,
   DeleteFlashCardPayload,
-  FlashCardItem,
   FlashCardListResponse,
   GetFlashCardListQuery,
   GetFlashCardStatsResponse,

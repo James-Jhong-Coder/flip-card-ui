@@ -14,7 +14,7 @@ const schema = object({
   back: string().nullable(),
 });
 
-const { defineField, handleSubmit, errors, resetForm, values } = useForm({
+const { defineField, resetForm, values } = useForm({
   validationSchema: schema,
   initialValues: {
     language: dashboardStore.searchParams.language ?? 'all',
@@ -42,9 +42,9 @@ const onClear = () => {
   });
 };
 
-const [language, languageAttrs] = defineField('language');
-const [front, frontAttrs] = defineField('front');
-const [back, backAttrs] = defineField('back');
+const [language] = defineField('language');
+const [front] = defineField('front');
+const [back] = defineField('back');
 
 onSearch();
 
