@@ -17,9 +17,11 @@ instance.interceptors.request.use(async (config: InternalAxiosRequestConfig) => 
   const token = localStorage.getItem('token');
   const uuid = uuidv4();
   if (config.headers) {
-    config.headers.Authorization = `Bearer ${token}`;
     config.headers['X-REQUEST-UUID'] = uuid;
     config.headers['UUID'] = uuid;
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
   }
   pushQueue({ uuid });
   return config;
