@@ -88,8 +88,18 @@ watch(
 @reference "@/styles/global.css";
 .table-filter {
   @apply grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* grid-template-columns: repeat(3, minmax(0, 1fr)); */
+  grid-template-columns: 1fr;
   grid-template-rows: min-content;
-  gap: 0 1rem;
+  /* gap: 0 1rem; */
+  gap: 1rem 0;
 }
+
+@media screen and (min-width: 40rem) {
+  .table-filter {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 1rem;
+  }
+}
+
 </style>

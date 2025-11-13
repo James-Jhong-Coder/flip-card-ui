@@ -48,25 +48,70 @@ const onPageChange = (e: PageState) => {
   <div class="flex flex-col">
     <template v-if="!isEmpty(computedList)">
       <DataTable :value="computedList" showGridlines>
-        <Column field="rowNo" header="序號"></Column>
-        <Column header="語言">
+        <Column
+          field="rowNo"
+          header="序號"
+          :header-style="{
+            whiteSpace: 'nowrap',
+          }"
+        ></Column>
+        <Column
+          header="語言"
+          :header-style="{
+            whiteSpace: 'nowrap',
+          }"
+        >
           <template #body="{ data }">
             <span>{{ $t(`cardLanguage.${data.language}`) }}</span>
           </template>
         </Column>
-        <Column field="front" header="正面"></Column>
-        <Column field="back" header="背面"></Column>
-        <Column header="建立日期">
+        <Column
+          field="front"
+          header="正面"
+          :header-style="{
+            whiteSpace: 'nowrap',
+          }"
+        ></Column>
+        <Column
+          field="back"
+          header="背面"
+          :header-style="{
+            whiteSpace: 'nowrap',
+          }"
+        ></Column>
+        <Column
+          header="建立日期"
+          :header-style="{
+            whiteSpace: 'nowrap',
+          }"
+          :body-style="{
+            whiteSpace: 'nowrap',
+          }"
+        >
           <template #body="{ data }">
             <span>{{ formatDate(data.createdAt) }}</span>
           </template>
         </Column>
-        <Column header="修改日期">
+        <Column
+          header="修改日期"
+          :header-style="{
+            whiteSpace: 'nowrap',
+          }"
+          :body-style="{
+            whiteSpace: 'nowrap',
+          }"
+        >
           <template #body="{ data }">
             <span>{{ formatDate(data.updatedAt) }}</span>
           </template>
         </Column>
-        <Column header="操作" header-class="column-text-center">
+        <Column
+          header="操作"
+          header-class="column-text-center"
+          :header-style="{
+            whiteSpace: 'nowrap',
+          }"
+        >
           <template #body="{ data }">
             <div class="flex items-center">
               <CustomButton variant="outline" shape="square" @click="onOpenEditDialog(data)">

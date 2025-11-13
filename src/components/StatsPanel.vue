@@ -24,7 +24,13 @@ defineProps<Props>();
 @reference "@/styles/global.css";
 .stats-panel {
   @apply grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0 12px;
+  grid-template-columns: 1fr;
+  gap: 1rem 0;
+}
+@media screen and (min-width: 40rem) {
+  .stats-panel {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 0.75rem;
+  }
 }
 </style>
